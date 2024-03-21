@@ -384,7 +384,15 @@ main {
 .info_more-btn:hover::before,
 .info_more-btn:focus::before { background: var(--bg-gradient-yellow-2); }
 
-.info_more-btn span { display: none; }
+.info_more-btn span { 
+  position: relative;
+  display: inline-block;
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 8px solid hsl(45, 100%, 71%) /* Adjust color as needed */
+}
 
 .sidebar-info_more {
   opacity: 0;
@@ -540,7 +548,10 @@ main {
   z-index: -1;
 }
 
-.service-icon-box { margin-bottom: 10px; }
+.service-icon-box { 
+  margin-bottom: 10px; 
+  background: var(--orange-yellow-crayola)
+}
 
 .service-icon-box img { margin: auto; }
 
@@ -746,6 +757,7 @@ main {
 .clients-item {
   min-width: 50%;
   scroll-snap-align: start;
+  overflow: hidden;
 }
 
 .clients-item img {
