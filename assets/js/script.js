@@ -1,7 +1,5 @@
 'use strict';
 
-
-
 // element toggle function
 const elementToggleFunc = function (elem) { elem.classList.toggle("active"); }
 
@@ -133,6 +131,49 @@ for (let i = 0; i < formInputs.length; i++) {
 
   });
 }
+
+// Add event listener for form submission
+form.addEventListener("submit", function (event) {
+  // Prevent the default form submission behavior
+  event.preventDefault();
+
+  // Send form data using EmailJS
+  emailjs.sendForm("service_gxe5bvt", "template_cgvr108", form, "m0UYha0uoe8x8bWWK")
+    .then(function(response) {
+      // If email is sent successfully, show a success message or perform any other action
+      console.log("Email sent successfully", response);
+      // reset only the message field
+      form.message.value = "";
+
+      // disable submit button
+      formBtn.setAttribute("disabled", "");
+      // show message on screen
+      toastr.options = {
+        "closeButton": true,
+        "debug": false,
+        "newestOnTop": false,
+        "progressBar": true,
+        "positionClass": "toast-bottom-right",
+        "preventDuplicates": false,
+        "onclick": null,
+        "showDuration": "300",
+        "hideDuration": "1000",
+        "timeOut": "5000",
+        "extendedTimeOut": "1000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+      }
+      toastr.success("Message sent successfully");      // You can display a success message or redirect the user to a thank you page here
+    }, function(error) {
+      // If there's an error sending the email, show an error message or perform any other action
+      console.error("Error sending email", error);
+      // You can display an error message or provide some feedback to the user here
+    });
+});
+
+
 
 
 
